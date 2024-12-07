@@ -5,9 +5,9 @@
 #include "DoublyLinkedList.h"
 
 
-void remove_duplicates(DoublyLinkedList b)
+void remove_duplicates(DoublyLinkedList *b)
 {
-    DoublyLinkedList::Node* a = b.head;
+    DoublyLinkedList::Node* a = b->head;
     while (a != nullptr)
     {
         
@@ -16,12 +16,14 @@ void remove_duplicates(DoublyLinkedList b)
       {
           if (c->data==a->data)
           {
-              DoublyLinkedList::Node* t = c->prev;
-              c->prev->next = c->next;
+              DoublyLinkedList::Node* t = c->prev;        
+              c->prev->next = c->next;                                
+     
               if (c->next ==nullptr)
               {
-                  b.tail = c;
-                  c = c->next;
+                  b->tail = c->prev;
+                  b->tail->next = nullptr;
+                  break;
               }
               else
               {
@@ -91,9 +93,16 @@ void sort(DoublyLinkedList* b)
        
     }
 }
+struct point
+{
+    int x, y;
+};
 int main()
 {
-    setlocale(LC_ALL, "Russian");
+    point* a;
+    
+    cout << a << endl;
+   /* setlocale(LC_ALL, "Russian");
     DoublyLinkedList a1 = DoublyLinkedList();
    
     while (true)
@@ -143,7 +152,7 @@ int main()
                                 else
                                     if (b == '7')
                                     {
-                                        remove_duplicates(a1);
+                                        remove_duplicates(&a1);
                                     }
                                     else
                                         if (b == '8')
@@ -157,8 +166,8 @@ int main()
 
         }
 
-    }
-
+    }*/
+    
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"

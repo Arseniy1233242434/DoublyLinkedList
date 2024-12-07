@@ -16,6 +16,10 @@ public:
 			head = new Node(data);
 			head->prev = nullptr;
 			head->next = tail;
+			if (tail  != nullptr)
+			{
+				tail->prev = head;
+			}
 		}
 		else
 		{
@@ -39,6 +43,10 @@ public:
 			tail= new Node(data);			
 			tail->prev =head;
 			tail->next = nullptr;
+			if (head != nullptr)
+			{
+				head->next = tail;
+			}
 		}
 		else
 		{
@@ -58,7 +66,12 @@ public:
 	{
 		if (head == nullptr)
 		{
-
+			if (tail != nullptr)
+			{
+				tail = nullptr;
+			}
+			
+				
 		}
 		else
 		if (head->next == NULL)
@@ -77,7 +90,12 @@ public:
 	{
 		if (tail == nullptr)
 		{
-
+			if (head != nullptr)
+			{
+				head = nullptr;
+			}
+			
+				
 		}
 		else
 		if (tail->prev == nullptr)
@@ -95,10 +113,15 @@ public:
 	void display()
 	{
 		Node* a = head;
+		
 		while (a != nullptr)
 		{
 			cout << a->data << endl;
 			a = a->next;
+		}
+		if (tail != nullptr&&head==nullptr)
+		{
+			cout << tail->data << endl;
 		}
 	}
 
@@ -111,6 +134,10 @@ public:
 		Node(int data)
 		{
 			this->data = data;
+		}
+		~Node()
+		{
+			delete this;
 		}
 	};
 	Node* head;
